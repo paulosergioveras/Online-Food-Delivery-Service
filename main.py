@@ -1,4 +1,3 @@
-# Dicionários para armazenar pedidos e avaliações
 orders = {
     'paulo': ['Pizza', 'Coca', 'Hamburguer'],
     'gustavo': ['Sushi', 'Lasanha', 'Sorvete'],
@@ -55,7 +54,7 @@ def restaurant_reviews():
     if note >= 4:
         print("Que bom que você gostou!")
     elif note <= 2:
-        print("😢 Sentimos muito pela experiência ruim.")
+        print("Sentimos muito pela experiência ruim.")
 
 def show_reviews():
     if not reviews:
@@ -64,7 +63,7 @@ def show_reviews():
     
     print("\nComentários registrados:")
     for restaurant, comments in reviews.items():
-        print(f"\n📍 Restaurante: {restaurant}")
+        print(f"\nRestaurante: {restaurant}")
         for review in comments:
             print(f"Usuário: {review['usuario']} - Nota: {review['nota']:.1f}")  # Usando 'usuario' e 'nota'
             if review["comentario"]:
@@ -74,7 +73,7 @@ def show_reviews():
 
 def menu():
     while True:
-        print("\n=== 🍽️ SISTEMA DE RESTAURANTE ===")
+        print("\n=== SISTEMA DE RESTAURANTE ===")
         print("[1] Ver histórico de pedidos")
         print("[2] Avaliar restaurante")
         print("[3] Ver avaliações registradas")
@@ -90,7 +89,7 @@ def menu():
         elif options == "3":
             show_reviews()
         elif options == "4":
-            print("\nObrigado por usar nosso sistema! Até mais! 👋")
+            print("\nObrigado por usar nosso sistema! Até mais!")
             break
         else:
             print("\nOpção inválida! Por favor, escolha 1, 2, 3 ou 4.")
