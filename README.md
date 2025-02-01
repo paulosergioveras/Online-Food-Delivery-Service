@@ -67,8 +67,8 @@ This project is an online food delivery system developed as part of the Software
 ## Installation and Setup
 Step 1. Clone the repository:
    ```sh
-   git clone https://github.com/paulosergioveras/-Online-Food-Delivery-Service.git
-   cd food-delivery
+   git clone https://github.com/paulosergioveras/Online-Food-Delivery-Service.git
+   cd Online-Food-Delivery-Service
    ```
 
 Step 2. Configure the Django Environment:
