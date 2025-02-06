@@ -1,26 +1,14 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from delivery.views import (
-    RestaurantViewSet, 
-    MenuViewSet, 
-    OrderViewSet, 
-    OrderItemViewSet, 
-    ReviewsViewSet, 
-    PromotionViewSet, 
-    PaymentViewSet,
-    SupportTicketViewSet )
+from django.contrib import admin
+from restaurants.views import (
+    RestaurantListCreateView, RestaurantRetrieveUpdateDestroyView, MenuListCreateView,
+    MenuRetrieveUpdateDestroyView)
 
-router = DefaultRouter()
-router.register(r'restaurants', RestaurantViewSet)
-router.register(r'menus', MenuViewSet)
-router.register(r'orders', OrderViewSet)
-router.register(r'order-items', OrderItemViewSet)
-router.register(r'reviews', ReviewsViewSet)
-router.register(r'promotions', PromotionViewSet)
-router.register(r'payments', PaymentViewSet)
-router.register(r'support-tickets', SupportTicketViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('payments/create-payment-intent/', PaymentViewSet.as_view({'post': 'create_payment_intent'})),
+    path('admin/', admin.site.urls),
+    path('restaurants/', RestaurantListCreateView.as_view(), name='restaurant-list-create'),
+    path('restaurants/<int:pk>/', RestaurantRetrieveUpdateDestroyView.as_view(), name='restaurant-detail'),
+    path('menus/', MenuListCreateView.as_view(), name='menus-list-create'),
+    path('menus/<int:pk>/', MenuRetrieveUpdateDestroyView.as_view(), name='menus-detail')
 ]
