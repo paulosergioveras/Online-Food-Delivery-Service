@@ -1,8 +1,24 @@
 from .models import Reviews
-from rest_framework import viewsets
+from rest_framework import generics
 from .serializers import ReviewsSerializer
+from restaurants.models import Restaurant
+from rest_framework.permissions import IsAuthenticated
 
 
-class ReviewsViewSet(viewsets.ModelViewSet):
+class ReviewsListCreateView(generics.ListCreateAPIView):
     queryset = Reviews.objects.all()
     serializer_class = ReviewsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        client = self.request.user
+        restaurant_id = self.request.data.get('restaurant_id')
+        restaurant = Restaurant.objects.get(id=restaurant_id)
+        serializer.save(client=client, restaurant=restaurant)
+
+
+class ReviewsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Reviews.objects.all()
+    serializer_class = ReviewsSerializer
+    permission_classes = [IsAuthenticated]
+
