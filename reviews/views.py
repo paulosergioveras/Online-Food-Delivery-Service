@@ -1,6 +1,6 @@
 from .models import Reviews
-from rest_framework import generics
 from .serializers import ReviewsSerializer
+from rest_framework import generics
 from restaurants.models import Restaurant
 from rest_framework.permissions import IsAuthenticated
 
