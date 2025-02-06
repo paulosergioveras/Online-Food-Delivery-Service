@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from restaurants.serializers import UserSerializer, RestaurantSerializer
-from .models import Reviews
 from restaurants.models import Restaurant
+from .models import Reviews
 
 
 class ReviewsSerializer(serializers.ModelSerializer):
