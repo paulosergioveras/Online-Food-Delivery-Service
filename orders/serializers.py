@@ -1,22 +1,47 @@
 from rest_framework import serializers
-from .models import Restaurant, Menu
-from django.contrib.auth.models import User
-from restaurants.serializers import MenuSerializer, UserSerializer, RestaurantSerializer
-from .models import Order, OrderItem
+from orders.models import Order, OrderItem
+from restaurants.models import Menu
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    menu_items = MenuSerializer(read_only=True)
     
     class Meta:
         model = OrderItem
-        fields = '__all__'
+        fields = ['id', 'menu_item', 'quantity', 'price']
 
 class OrderSerializer(serializers.ModelSerializer):
-    client = UserSerializer(read_only=True)
-    restaurant = RestaurantSerializer(read_only=True)
-    items = MenuSerializer(many=True, read_only=True)
+    items = serializers.SerializerMethodField(read_only=True)
+    menu_items = serializers.ListField(
+        child=serializers.DictField(),
+        write_only=True
+    )
 
     class Meta:
         model = Order
         fields = '__all__'
+
+    def get_items(self, obj):
+        items = OrderItem.objects.filter(order=obj)
+        return OrderItemSerializer(items, many=True).data
+
+    def create(self, validated_data):
+        menu_items = validated_data.pop('menu_items')
+        order = Order.objects.create(**validated_data)
+        
+        total = 0
+        for item in menu_items:
+            menu_item = Menu.objects.get(id=item['id'])
+            quantity = item['quantity']
+            price = menu_item.price * quantity
+            total += price
+            
+            OrderItem.objects.create(
+                order=order,
+                menu_item=menu_item,
+                quantity=quantity,
+                price=price
+            )
+        
+        order.total_price = total
+        order.save()
+        return order
