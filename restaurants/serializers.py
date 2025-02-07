@@ -24,6 +24,7 @@ class MenuSerializer(serializers.ModelSerializer):
         queryset=Restaurant.objects.all(), source='restaurant', write_only=True
     )
 
+  
     class Meta:
         model = Menu
         fields = '__all__'
