@@ -8,5 +8,5 @@ class Reviews(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     rating = models.FloatField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    comments = models.TextField()
+    comments = models.TextField() #NAO OBRIGATORIO
     created_at = models.DateTimeField(auto_now_add=True)
