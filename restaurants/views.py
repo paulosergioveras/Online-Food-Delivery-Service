@@ -39,35 +39,3 @@ class MenuRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     
 
 
-
-
-
-
-"""class RestaurantViewSet(viewsets.ModelViewSet):
-    queryset = Restaurant.objects.all()
-    serializer_class = RestaurantSerializer
-
-    @action(detail=True, methods=['get'])
-    def analytics(self, request, pk=None):
-        restaurant = self.get_object()
-
-        total_orders = Order.objects.filter(restaurant=restaurant).count()
-
-        average_rating = Reviews.objects.filter(restaurant=restaurant).aggregate(Avg('rating'))['rating__avg']
-
-        popular_dishes = Menu.objects.filter(restaurant=restaurant).annotate(
-            order_count=Count('orderitem')
-        ).order_by('-order_count')[:5]
-
-        revenue = Payment.objects.filter(order__restaurant=restaurant, status='SUCCESS').aggregate(
-            total_revenue=models.Sum('amount')
-        )['total_revenue'] or 0
-
-        return Response({
-            'total_orders': total_orders,
-            'average_rating': average_rating,
-            'popular_dishes': MenuSerializer(popular_dishes, many=True).data,
-            'revenue': revenue,
-        })"""
-
-
