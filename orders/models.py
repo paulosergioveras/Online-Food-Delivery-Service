@@ -1,6 +1,7 @@
 from django.db import models
-from restaurants.models import Restaurant, Menu
 from django.contrib.auth.models import User
+from restaurants.models import Restaurant
+from menu.models import Menu
 
 
 STATUS_CHOICES = [

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from orders.models import Order, OrderItem
-from restaurants.models import Menu
+from menu.models import Menu
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
