@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 from orders.models import Order
 
 
+STATUS_CHOICES = [
+    ('OPEN', 'Open'),
+    ('IN_PROGRESS', 'In Progress'),
+    ('RESOLVED', 'Resolved'),
+]
+
+
 class SupportTicket(models.Model):
-    STATUS_CHOICES = [
-        ('OPEN', 'Open'),
-        ('IN_PROGRESS', 'In Progress'),
-        ('RESOLVED', 'Resolved'),
-    ]
 
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='support_tickets')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='support_tickets', null=True, blank=True)
