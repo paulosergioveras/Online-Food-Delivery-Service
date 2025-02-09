@@ -1,3 +1,7 @@
 from django.contrib import admin
+from support.models import SupportTicket
 
-# Register your models here.
+
+@admin.register(SupportTicket)
+class ModelAdmin(admin.ModelAdmin):
+	list_display = ('client', 'order', 'subject', 'description', 'status',' created_at')
