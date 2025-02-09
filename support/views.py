@@ -1,7 +1,7 @@
-from .models import SupportTicket
 from rest_framework import generics
-from .serializers import SupportTicketSerializer
 from rest_framework.permissions import IsAuthenticated
+from support.models import SupportTicket
+from support.serializers import SupportTicketSerializer
 
 
 class SupportTicketListCreateView(generics.ListCreateAPIView):
