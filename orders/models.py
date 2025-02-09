@@ -3,8 +3,7 @@ from restaurants.models import Restaurant, Menu
 from django.contrib.auth.models import User
 
 
-class Order(models.Model):
-    STATUS_CHOICES = [
+STATUS_CHOICES = [
         ('PENDING', 'Pending'),
         ('CONFIRMED', 'Confirmed'),
         ('PREPARING', 'Preparing'),
@@ -12,7 +11,9 @@ class Order(models.Model):
         ('DELIVERED', 'Delivered'),
         ('CANCELED', 'Canceled'),
     ]
-    
+
+
+class Order(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(Menu, through='OrderItem')
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
