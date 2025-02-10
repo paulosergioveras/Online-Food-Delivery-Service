@@ -6,9 +6,9 @@ from restaurants.models import Restaurant
 
 
 class MenuListCreateView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         restaurant = Restaurant.objects.get(owner=self.request.user)
@@ -16,6 +16,7 @@ class MenuListCreateView(generics.ListCreateAPIView):
 
     
 class MenuRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = [IsAuthenticated]
+    
