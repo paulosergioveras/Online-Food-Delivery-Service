@@ -6,9 +6,9 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class ReviewsListCreateView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Reviews.objects.all()
     serializer_class = ReviewsSerializer
-    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         client = self.request.user
@@ -18,7 +18,7 @@ class ReviewsListCreateView(generics.ListCreateAPIView):
 
 
 class ReviewsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Reviews.objects.all()
     serializer_class = ReviewsSerializer
-    permission_classes = [IsAuthenticated]
 
