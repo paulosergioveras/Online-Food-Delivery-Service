@@ -5,15 +5,15 @@ from support.serializers import SupportTicketSerializer
 
 
 class SupportTicketListCreateView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = SupportTicket.objects.all()
     serializer_class = SupportTicketSerializer
-    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(client=self.request.user)
 
 
 class SupportTicketRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = SupportTicket.objects.all()
     serializer_class = SupportTicketSerializer
-    permission_classes = [IsAuthenticated]
