@@ -1,12 +1,13 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from app.permissions import GlobalDefaultPermission
 from menu.models import Menu
 from menu.serializers import MenuSerializer
 from restaurants.models import Restaurant
 
 
 class MenuListCreateView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
@@ -16,7 +17,7 @@ class MenuListCreateView(generics.ListCreateAPIView):
 
     
 class MenuRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
     

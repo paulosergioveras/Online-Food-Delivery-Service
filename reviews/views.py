@@ -1,12 +1,13 @@
 from .models import Reviews
 from .serializers import ReviewsSerializer
 from rest_framework import generics
-from restaurants.models import Restaurant
 from rest_framework.permissions import IsAuthenticated
+from app.permissions import GlobalDefaultPermission
+from restaurants.models import Restaurant
 
 
 class ReviewsListCreateView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Reviews.objects.all()
     serializer_class = ReviewsSerializer
 
@@ -18,7 +19,7 @@ class ReviewsListCreateView(generics.ListCreateAPIView):
 
 
 class ReviewsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, GlobalDefaultPermission,)
     queryset = Reviews.objects.all()
     serializer_class = ReviewsSerializer
 
