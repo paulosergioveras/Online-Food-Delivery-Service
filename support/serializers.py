@@ -23,4 +23,3 @@ class SupportTicketSerializer(serializers.ModelSerializer):
         if value and value.client != self.context['request'].user:
             raise serializers.ValidationError("Este pedido não pertence ao cliente autenticado.")
         return value
-
