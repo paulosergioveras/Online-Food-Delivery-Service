@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.conf import settings
 import stripe
+from rest_framework.permissions import IsAuthenticated
 from .models import Payment
 from .serializers import PaymentSerializer
 
@@ -11,16 +12,19 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class PaymentListCreateView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
 
 
 class PaymentRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
 
 
 class CreatePaymentIntentAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
     def post(self, request):
         order_id = request.data.get('order_id')
         total_price = request.data.get('total_price')
