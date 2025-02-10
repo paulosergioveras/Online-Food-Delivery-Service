@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('restaurants/', views.RestaurantListCreateView.as_view(), name='restaurant-list-create'),
     path('restaurants/<int:pk>/', views.RestaurantRetrieveUpdateDestroyView.as_view(), name='restaurant-detail'),
+    path('restaurants/status/', views.RestaurantStatusView.as_view(), name='restaurant-status-view'),
 ]
