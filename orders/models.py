@@ -5,13 +5,13 @@ from menu.models import Menu
 
 
 STATUS_CHOICES = [
-        ('PENDING', 'Pending'),
-        ('CONFIRMED', 'Confirmed'),
-        ('PREPARING', 'Preparing'),
-        ('OUT_FOR_DELIVERY', 'Out for delivery'),
-        ('DELIVERED', 'Delivered'),
-        ('CANCELED', 'Canceled'),
-    ]
+    ('PENDING', 'Pending'),
+    ('CONFIRMED', 'Confirmed'),
+    ('PREPARING', 'Preparing'),
+    ('OUT_FOR_DELIVERY', 'Out for delivery'),
+    ('DELIVERED', 'Delivered'),
+    ('CANCELED', 'Canceled'),
+]
 
 
 class Order(models.Model):
@@ -27,8 +27,8 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Order #{self.id} - {self.client.username}'
-    
-    
+   
+   
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     menu_item = models.ForeignKey(Menu, on_delete=models.CASCADE)
