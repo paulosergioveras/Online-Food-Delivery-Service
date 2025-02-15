@@ -82,11 +82,6 @@ Step 3. Install dependencies:
    pip install -r requirements.txt
    ```
 
-Step 4. Apply makemigrations:
-   ```sh
-   python manage.py makemigrations
-   ```
-
 Step 5. Apply migrations:
    ```sh
    python manage.py migrate
@@ -96,3 +91,13 @@ Step 6. Run the server:
    python manage.py runserver
    ```
 Step 7. API endpoints available at `http://localhost:8000/`
+
+Step 8. Collection do Postman
+
+   https://documenter.getpostman.com/view/41829241/2sAYXEEdZJ
+   clique em run in postman no canto superior direito e selecione Postman for Web
+   selecione onde voce irá importar
+   va na pasta authentication e no arquivo get token e gerre um token
+
+
+
